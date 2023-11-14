@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ewod_indomaret/menu.dart';
+import 'package:ewod_indomaret/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Ewod Indomaret',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
