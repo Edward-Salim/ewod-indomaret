@@ -1,135 +1,114 @@
 <h1>README.md</h1>
 
 
-1. **Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement(), disertai dengan contoh mengenai penggunaan kedua metode tersebut yang tepat!**
-
-    **Jawaban:**
-
-    * **Navigator.push():**
-        * Metode ini digunakan untuk menambahkan halaman baru di atas tumpukan navigasi.
-        * Halaman sebelumnya tetap ada dalam tumpukan navigasi.
-        * Cocok digunakan ketika Anda ingin menumpuk halaman baru di atas halaman saat ini.
-    * **Navigator.pushReplacement():**
-        * Metode ini juga menambahkan halaman baru ke tumpukan navigasi, tetapi sekaligus menggantikan halaman saat ini dengan halaman baru.
-        * Halaman sebelumnya dihapus dari tumpukan navigasi.
-        * Cocok digunakan ketika Anda ingin menggantikan halaman saat ini dengan halaman baru, misalnya setelah pengguna melakukan tindakan tertentu.
-
-        Sebagai contoh, jika memiliki halaman login dan ingin beralih ke dashboard setelah pengguna berhasil login, gunakan Navigator.pushReplacement() untuk menggantikan halaman login dengan dashboard agar pengguna tidak dapat kembali ke halaman login menggunakan tombol "back". Jika ingin menunjukkan halaman tambahan di atas halaman saat ini, gunakan Navigator.push().<br><br>
-
-2. **Jelaskan masing-masing layout widget pada Flutter dan konteks penggunaannya masing-masing!**
-
-    **Jawaban:**
-
-    * **Container:**
-        * Digunakan untuk mengelompokkan dan menata widget lain.
-        * Mengatur ukuran, margin, padding, dan dekorasi suatu widget.
-    * **Row dan Column:**
-        * **Row:** Merepresentasikan baris horizontal dari widget.
-        * **Column:** Merepresentasikan kolom vertikal dari widget.
-        * Digunakan untuk menyusun widget secara berdampingan (Row) atau bertumpuk (Column).
-    * **ListView:**
-        * Digunakan untuk menampilkan daftar item yang dapat di-scroll.
-        * Efisien untuk menangani daftar item yang panjang.
-    * **GridView:**
-        * Digunakan untuk menampilkan daftar item dalam susunan grid.
-        * Berguna untuk menampilkan data dalam format yang terstruktur.
-    * **Stack dan Positioned:**
-        * **Stack:** Memposisikan widget di atas satu sama lain.
-        * **Positioned:** Menentukan posisi suatu widget dalam tumpukan.
-    * **Expanded dan Flexible:**
-        * **Expanded:** Digunakan untuk mengisi ruang yang tersedia dalam parent widget.
-        * **Flexible:** Memberikan kontrol lebih lanjut atas seberapa banyak ruang dapat diambil oleh widget.
-    * **SizedBox:**
-        * Digunakan untuk menentukan ukuran widget dalam hal lebar, tinggi, atau kedua-duanya.
-    * **Card:**
-        * Menyediakan bingkai untuk menampilkan informasi terkait dalam antarmuka pengguna.
-    * **Wrap:**
-        * Membungkus widget secara horizontal atau vertikal sesuai kebutuhan.
-        * Berguna ketika jumlah item dalam baris atau kolom tidak diketahui secara pasti.
-    * **Align:**
-        * Menyusun widget ke posisi yang diinginkan dalam parent widget.<br><br>
-        
-3. **Sebutkan apa saja elemen input pada form yang kamu pakai pada tugas kali ini dan jelaskan mengapa kamu menggunakan elemen input tersebut!**
-
-    **Jawaban:**
-
-    * **TextFormField untuk name:**
-        * **Input:** Teks (String)
-        * **Validator:** Memastikan bahwa nama tidak boleh kosong.
-    * **TextFormField untuk amount:**
-        * **Input:** Angka (int)
-        * **Validator:** Memastikan bahwa jumlah tidak boleh kosong dan harus berupa angka.
-    * **TextFormField untuk description:**
-        * **Input:** Teks (String)
-        * **Validator:** Memastikan bahwa deskripsi tidak boleh kosong.
-    * **ElevatedButton untuk Menyimpan (Save):**
-        * Menggunakan _formKey untuk memvalidasi formulir sebelum menyimpan data.<br><br>
-4. **Bagaimana penerapan clean architecture pada aplikasi Flutter?**
+1. **Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?**
 
     **Jawaban:**
 
 
-    Penerapan Clean Architecture dapat membantu membangun aplikasi yang lebih modular, mudah diuji, dan mudah diubah.Penting untuk dicatat bahwa penerapan Clean Architecture dapat bervariasi tergantung pada kebutuhan spesifik proyek dan preferensi tim pengembangan. Berikut langkah-langkah umum untuk menerapkan Clean Architecture pada aplikasi Flutter:
+    Ya bisa. Dalam konteks pemrograman, khususnya ketika berhubungan dengan data JSON, "model" biasanya mengacu pada struktur data yang telah didefinisikan atau kelas yang meniru struktur data yang diharapkan dari JSON. Menggunakan model atau tidak tergantung pada kebutuhan spesifik dan konteks proyek.
 
-    * **Pemisahan Struktur Proyek:**
-        * Pisahkan proyek menjadi modul-modul yang berbeda, biasanya:
-            * **domain:** Berisi logika bisnis dan entitas domain.
-            * **data:** Menangani sumber daya data seperti API atau database.
-            * **presentation:** Berisi kode UI dan logika presentasi.
-            * **external:** Menangani eksternal dependencies.
-    * **Domain Layer:**
-        * **Entities:** Definisikan entitas domain yang mewakili objek-objek inti dalam aplikasi.
-        * **Use Cases (Interactors):** Implementasikan aturan bisnis dalam use case atau interaktor yang terletak di lapisan domain.
-    * **Data Layer:**
-        * **Repositories:** Tentukan antarmuka repositori di lapisan domain dan implementasinya di lapisan data. Repositori bertanggung jawab untuk mendapatkan data dari berbagai sumber seperti API atau database.
-        * **Data Sources:** Buat kelas-kelas yang bertanggung jawab untuk berkomunikasi dengan sumber daya data, seperti API clients atau local database.
-    * **Presentation Layer:**
-        * **Screens dan Widgets:** Tempatkan UI dan logika presentasi di lapisan ini.
-        * **ViewModels atau Blocs:** Gunakan ViewModel atau BLoC untuk mengelola state dan logika presentasi. Mereka berkomunikasi dengan use case dari lapisan domain.
-    * **Dependency Injection:**
-        * Gunakan teknik injeksi dependensi untuk menyediakan dependensi pada kelas-kelas yang membutuhkannya. Flutter memiliki paket seperti get_it atau provider yang dapat membantu mengimplementasikan injeksi dependensi.
-    * **Unit Testing dan Mocking:**
-        * Uji unit pada komponen-komponen seperti use cases di lapisan domain.
-        * Gunakan mocking untuk mengisolasi unit tes dari dependensi eksternal.<br><br>
+    * **Untuk Proyek Sederhana atau Data Dinamis:** Mengambil data JSON langsung tanpa model bisa lebih efektif.
+    * **Untuk Proyek Skala Besar atau yang Membutuhkan Integritas Data Tinggi:** Mendefinisikan model sebelum mengambil data JSON disarankan.<br><br>
 
-5. **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!**
+2. **Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.**
 
     **Jawaban:**
 
-    * **Membuat minimal satu halaman baru pada aplikasi, yaitu halaman formulir tambah item baru dengan ketentuan sebagai berikut:**
-        * **Memakai minimal tiga elemen input, yaitu name, amount, description. Tambahkan elemen input sesuai dengan model pada aplikasi tugas Django yang telah kamu buat.**
 
-        * **Memiliki sebuah tombol Save.**
+    **CookieRequest memiliki beberapa fungsi utama:**
 
-        * **Setiap elemen input di formulir juga harus divalidasi dengan ketentuan sebagai berikut:**
+    * **Manajemen Cookie:** Mengatur cara cookie disimpan, diupdate, atau dihapus selama interaksi dengan server. Ini termasuk menyimpan cookie dari respons server dan mengirimkannya kembali dengan request berikutnya.
+    * **Pemeliharaan Sesi:** Cookie sering digunakan untuk menjaga sesi pengguna, yang berarti CookieRequest bisa membantu dalam mempertahankan keadaan sesi antara client dan server.
+    * **Autentikasi dan Keamanan:** Cookie sering digunakan untuk menyimpan token atau data autentikasi. CookieRequest mungkin bertanggung jawab untuk menangani cookie ini dengan aman.
+    * **Penyesuaian dan Preferensi:** Cookie dapat digunakan untuk menyimpan preferensi pengguna atau data penyesuaian lainnya yang mempengaruhi cara aplikasi berinteraksi dengan pengguna.
 
-            1. **Setiap elemen input tidak boleh kosong.**
-            2. **Setiap elemen input harus berisi data dengan tipe data atribut modelnya.**
-        1. Saya telah membuat sebuah berkas baru bernama shoplist_form.dart di dalam direktori lib. Di dalam berkas ini, saya menambahkan kode yang diperlukan untuk membuat sebuah form sederhana.
-        
-        2. Untuk mengelola state form, validasi input, dan penyimpanan data form, saya membuat sebuah variabel baru yang saya namakan _formKey. Kemudian, saya mengintegrasikan _formKey ini ke dalam atribut key milik widget Form.
+    **Membagi instance CookieRequest di seluruh komponen aplikasi Flutter sangat penting karena beberapa alasan:**
 
-        3. Kemudian, saya mulai mengisi widget Form dengan field-field yang diperlukan. Saya membuat variabel String _name, int _amount, dan String _description untuk menyimpan input dari masing-masing field yang akan dibuat. Setiap field ini diwakili oleh widget TextFormField yang juga dibungkus dalam widget Padding dan ditempatkan sebagai salah satu children dari widget Column. Selain itu, saya mengatur atribut crossAxisAlignment untuk mengatur alignment children dari Column agar tampilan terlihat rapi.
+    * **Konsistensi Data:** Memastikan bahwa semua request HTTP yang dibuat dari berbagai bagian aplikasi membawa informasi cookie yang sama, yang penting untuk konsistensi data dan manajemen sesi.
+    * **Efisiensi:** Mencegah duplikasi kode. Jika setiap komponen memiliki implementasi CookieRequest sendiri, ini akan menyebabkan pemborosan sumber daya dan duplikasi usaha.
+    * **Kemudahan Pemeliharaan:** Memiliki satu titik kontrol untuk manajemen cookie membuat aplikasi lebih mudah dipelihara dan diperbarui. Jika perlu mengubah cara cookie ditangani, hanya perlu mengubah di satu tempat.
+    * **Keamanan:** Mengatur cookie secara sentralisasi memungkinkan penerapan kebijakan keamanan yang konsisten di seluruh aplikasi.
+    * **Pengujian dan Debugging:** Mempermudah proses pengujian dan debugging karena ada titik tunggal untuk memeriksa manajemen cookie.<br><br>
 
-        4. Selanjutnya, saya menambahkan kode validator untuk setiap TextFormField. Validator ini bertugas untuk melakukan validasi isi dari TextFormField dan akan mengembalikan pesan error dalam bentuk String jika terdapat error. Implementasi validator ini mengikuti prinsip null-safety dan harus sesuai dengan tipe data atribut model yang digunakan.
+3. **Jelaskan mekanisme pengambilan data dari JSON hingga dapat ditampilkan pada Flutter.**
 
-        5. Selanjutnya, saya memasukkan tombol "Save" sebagai child widget di dalam Column. Tombol ini ditempatkan dalam sebuah wrapper widget Padding dan Align, sehingga akan memunculkan sebuah pop-up saat tombol tersebut ditekan.
+    **Jawaban:**
 
-    * **Mengarahkan pengguna ke halaman form tambah item baru ketika menekan tombol Tambah Item pada halaman utama.**
-        1. Pada widget ShopItem dalam berkas menu.dart yang telah saya buat, saya telah mengatur kode yang terdapat pada atribut onTap dari InkWell agar dapat melakukan navigasi ke route lain. Untuk melakukan navigasi ini, saya menggunakan metode Navigator.push, yang memungkinkan pengguna untuk berpindah dari halaman utama ke halaman tambah item dengan menekan tombol Tambah Item.
-    * **Memunculkan data sesuai isi dari formulir yang diisi dalam sebuah pop-up setelah menekan tombol Save pada halaman formulir tambah item baru.**
-        1. Untuk mengatur tindakan yang diambil saat tombol "Save" ditekan, saya menambahkan fungsi showDialog() pada atribut onPressed() tombol tersebut. Pada fungsi showDialog(), saya menampilkan widget AlertDialog yang akan muncul ketika tombol "Save" ditekan. Selain itu, saya juga menambahkan sebuah fungsi untuk mereset form setelah data disimpan.
-    * **Membuat sebuah drawer pada aplikasi dengan ketentuan sebagai berikut:**
-        * **Drawer minimal memiliki dua buah opsi, yaitu Halaman Utama dan Tambah Item.**
-        * **Ketika memiih opsi Halaman Utama, maka aplikasi akan mengarahkan pengguna ke halaman utama.**
-        * **Ketika memiih opsi (Tambah Item), maka aplikasi akan mengarahkan pengguna ke halaman form tambah item baru.**
+    1. **Mengirim Permintaan HTTP**
 
-            1. Saya membuat sebuah berkas baru bernama left_drawer.dart di dalam direktori widgets yang baru saya buat. Di dalam berkas ini, saya menambahkan kode untuk membuat komponen yang disebut LeftDrawer.
+        Pertama, aplikasi Flutter perlu mengirim permintaan HTTP ke server atau API untuk meminta data. Ini biasanya dilakukan menggunakan paket seperti http dari pub.dev.
 
-            2. Selanjutnya, saya melakukan impor untuk halaman-halaman yang ingin saya tambahkan ke dalam menu Drawer. Ini mencakup pengaturan navigasi untuk kembali ke halaman utama dan menambahkan item baru.
+    2. **Penguraian Data JSON**
 
-            3. Setelah berhasil melakukan impor, saya mengkonfigurasi routing untuk halaman-halaman yang telah saya impor menggunakan metode Navigator.pushReplacement().
+        Setelah menerima respons, data (biasanya dalam format JSON) perlu diuraikan. Flutter menyediakan kelas json dalam pustaka dart:convert untuk menangani ini. Jika data JSON cukup kompleks atau jika ingin meningkatkan keamanan tipe dan pemeliharaan kode, maka konversi JSON ke objek Dart. Hal ini sering dilakukan dengan menggunakan model kelas.
 
-            4. Selanjutnya, saya menghias drawer dengan menambahkan kode untuk membuat drawer header yang sesuai dengan tampilan yang diinginkan.
+    3. **Menampilkan Data di UI**
 
-            5. Terakhir, saya melakukan refactoring dengan membuat sebuah berkas baru yang saya beri nama shop_card.dart, dan berkas ini saya tempatkan di dalam direktori widgets. Di dalam berkas shop_card.dart, saya memindahkan seluruh konten dari widget ShopItem yang sebelumnya berada dalam berkas menu.dart. Selanjutnya, saya mengimpor halaman shoplist_form.dart ke dalam berkas shop_card.dart untuk memastikan dependensi yang dibutuhkan tersedia. Selain itu, saya juga mengimpor berkas shop_card.dart ke dalam berkas menu.dart, sehingga dapat menggunakan widget ShopItem yang telah dikeluarkan dari berkas menu.dart. Sebagai tahap terakhir, saya melakukan pemindahan berkas menu.dart dan shoplist_form.dart ke dalam folder screens yang baru saya buat, untuk menjaga struktur direktori yang lebih terorganisir.
+        Setelah data diuraikan, tampilkan ke dalam UI Flutter. Hal ini biasanya melibatkan pembangunan widget yang menampilkan data tersebut. Flutter menawarkan berbagai widget untuk menampilkan data, seperti Text, ListView, dan lainnya.
+
+    4. **Mengelola State**
+
+        Dalam aplikasi yang lebih kompleks, mungkin perlu mengelola state dari data yang dimuat. Ini dapat dilakukan menggunakan manajer state seperti Provider, Bloc, atau Riverpod.
+
+    5. **Penanganan Error**
+
+        Penting untuk menangani kasus di mana data tidak dapat diambil dengan benar. Ini mungkin termasuk menampilkan pesan kesalahan, mencoba kembali, atau menyediakan umpan balik lainnya kepada pengguna.
+
+    6. **Memperbarui UI**
+
+        Jika data berubah atau diperbarui, perlu dipasatikan bahwa UI aplikasi diperbarui untuk mencerminkan perubahan tersebut. Ini bisa dilakukan dengan memanggil setState() dalam widget Stateful, atau menggunakan pendekatan state management lainnya.<br><br>
+
+4. **Jelaskan mekanisme autentikasi dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.**
+
+    **Jawaban:**
+
+    1. **Pengumpulan Data Akun di Flutter**
+        * **Input Pengguna:** Aplikasi Flutter mengumpulkan data akun (biasanya username dan password) melalui form input.
+        * **Validasi:** Sebelum mengirim, aplikasi mungkin melakukan validasi dasar seperti memeriksa kekosongan field atau format input.
+        * **Pengiriman Data:** Menggunakan paket HTTP (atau paket lainnya), aplikasi mengirim request ke server Django, biasanya dengan metode POST. Data dikirim dalam format JSON atau sebagai data form terenkripsi.
+    2. **Proses Autentikasi di Django**
+        * **Menerima Request:** Server Django menerima request dan mengurai data yang dikirimkan.
+        * **Autentikasi:** Django memproses data menggunakan sistem autentikasi yang telah disiapkan. Ini mungkin melibatkan pencocokan username dan password dengan database pengguna.
+        * **Token Autentikasi:** Jika autentikasi berhasil, server mungkin menghasilkan token (misalnya JWT) dan mengirimkannya kembali sebagai bagian dari respons.
+        * **Tangani Error:** Jika autentikasi gagal, Django mengirim respons dengan status error dan pesan yang sesuai.
+    3. **Menangani Respons di Flutter**
+        * **Menerima Respons:** Aplikasi Flutter menerima respons dari Django.
+        * **Pemeriksaan Status:** Aplikasi memeriksa status respons. Jika autentikasi berhasil, aplikasi menyimpan token (jika ada) untuk sesi yang aman.
+        * **Navigasi:** Berdasarkan respons, aplikasi Flutter kemudian memutuskan untuk menavigasikan pengguna ke halaman berikutnya (misalnya menu utama aplikasi).
+    4. **Menampilkan Menu atau Halaman Berikutnya**
+        * **UI Responsif:** Setelah autentikasi, aplikasi menampilkan UI yang sesuai, seperti menu utama atau dashboard pengguna.
+        * **Penggunaan Token:** Untuk request berikutnya ke server yang memerlukan autentikasi, token yang disimpan digunakan.<br><br>
+
+5. **Sebutkan seluruh widget yang kamu pakai pada tugas ini dan jelaskan fungsinya masing-masing.**
+
+    **Jawaban:**
+
+    * **AlertDialog:** Digunakan untuk menampilkan pesan atau peringatan kepada pengguna.
+    * **TextButton:** Widget ini menunjukkan tombol yang berisi teks.
+    * **TextField:** Widget ini digunakan untuk memungkinkan pengguna memasukkan teks.
+    * **InputDecoration:** Mendefinisikan tampilan dan gaya dari TextField.
+    * **SizedBox:** Widget ini digunakan untuk menciptakan ruang antara dua widget lain.
+    * **ElevatedButton:** Menampilkan tombol yang terangkat atau menonjol.
+    * **Navigator:** Mengelola urutan navigasi atau rute dalam aplikasi.
+    * **MaterialPageRoute:** Memberikan efek transisi ketika berpindah antara** **halaman.
+    * **CircularProgressIndicator:** Menampilkan indikator proses atau loading.
+    * **ListView.builder:** Membuat daftar yang dioptimalkan, di mana item-itemnya dibuat saat muncul di layar.
+    * **FutureBuilder:** Membuat widget yang bergantung pada hasil Future, seperti membangun ListView dari hasil fetchItem().
+    * **Provider:** Menyediakan objek yang bisa diakses oleh widget lain di bawahnya dalam struktur widget tree, digunakan untuk memberikan akses ke CookieRequest.
+    * **LoginPage:** Widget khusus untuk menampilkan halaman masuk atau login.
+    * **ItemPage:** Widget khusus untuk menampilkan daftar item.
+    * **ItemInformation:** Widget khusus untuk menampilkan informasi tentang suatu item.
+    * **ScaffoldMessenger:** Digunakan untuk menampilkan SnackBar atau pesan singkat.<br><br>
+
+6. **Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step**
+
+    **Jawaban:**
+
+    1. Saya mendefinisikan model yang digunakan ketika melakukan pemanggilan web service. Ini melibatkan pembuatan class dan metode untuk konversi data JSON ke objek Flutter dan sebaliknya.
+    2. Saya menambahkan dependensi HTTP ke proyek, membuat model sesuai dengan respons data dari web service, membuat HTTP request, mengkonversi objek dari web service ke model yang dibuat, dan menampilkan data tersebut di aplikasi menggunakan FutureBuilder.
+    3. Saya menggunakan Provider untuk mengelola state dalam aplikasi Flutter, yang memudahkan alokasi resource, lazy-loading, dan mengurangi boilerplate.
+    4. Saya melakukan beberapa langkah di Django, termasuk membuat django-app untuk autentikasi, menambahkan dependensi, dan mengkonfigurasi settings.py dan urls.py. Saya juga membuat metode view untuk login.
+    5. Saya menginstal package yang disediakan untuk integrasi dengan Django, memodifikasi root widget dengan Provider, dan membuat UI untuk login.
+    6. Saya menggunakan Quicktype untuk membuat model yang sesuai dengan data JSON dari Django.
+    7. Saya menambahkan dependensi HTTP dan melakukan fetch data dari Django, kemudian menampilkan data tersebut di aplikasi Flutter.

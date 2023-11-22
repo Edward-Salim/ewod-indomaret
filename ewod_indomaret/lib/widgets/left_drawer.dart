@@ -1,3 +1,4 @@
+import 'package:ewod_indomaret/screens/list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:ewod_indomaret/screens/menu.dart';
 import 'package:ewod_indomaret/screens/shoplist_form.dart';
@@ -10,12 +11,12 @@ class LeftDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(
+          const DrawerHeader(
+            decoration: BoxDecoration(
               color: Colors.indigo,
             ),
             child: Column(
-              children: const [
+              children: [
                 Text(
                   'Ewod Indomaret',
                   textAlign: TextAlign.center,
@@ -59,6 +60,17 @@ class LeftDrawer extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => const ShopFormPage(),
                   ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.shopping_basket),
+            title: const Text('Daftar Item'),
+            onTap: () {
+              // Route menu ke halaman produk
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ItemPage()),
+              );
             },
           ),
         ],
